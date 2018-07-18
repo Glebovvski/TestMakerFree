@@ -29,6 +29,9 @@ namespace TestMakerFree.ViewModels
         [DefaultValue(0)]
         public int Flags { get; set; }
 
+        public int MaxValue { get; set; }
+        public int MinValue { get; set; }
+
         [JsonIgnore]
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
