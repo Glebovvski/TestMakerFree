@@ -33,6 +33,7 @@
     <None Remove="ClientApp\app\components\pagenotfound\pagenotfound.component.ts" />
     <None Remove="ClientApp\app\components\quiz\quiz-edit.component.ts" />
     <None Remove="ClientApp\app\components\quiz\quiz-list.component.ts" />
+    <None Remove="ClientApp\app\interfaces\answer.ts" />
     <None Remove="ClientApp\app\interfaces\question.ts" />
     <None Remove="ClientApp\app\interfaces\quiz.ts" />
   </ItemGroup>
@@ -43,6 +44,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\pagenotfound\pagenotfound.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\quiz\quiz-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\quiz\quiz-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\interfaces\answer.ts" />
     <TypeScriptCompile Include="ClientApp\app\interfaces\question.ts" />
     <TypeScriptCompile Include="ClientApp\app\interfaces\quiz.ts" />
   </ItemGroup>
