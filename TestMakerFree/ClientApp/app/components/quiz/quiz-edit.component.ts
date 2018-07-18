@@ -36,16 +36,16 @@ export class QuizEditComponent {
 
     onSubmit(quiz: Quiz) {
         var url = this.baseUrl + "api/quiz/";
-
+        var options = {};
         if (this.editMode) {
-            this.http.put<Quiz>(url, quiz).subscribe(res => {
+            this.http.put<Quiz>(url, quiz, options).subscribe(res => {
                 var v = res;
                 console.log("Quiz " + v.Id + " has been updated.");
                 this.router.navigate(["home"]);
             }, error => console.log(error));
         }
         else {
-            this.http.post<Quiz>(url, quiz).subscribe(res => {
+            this.http.post<Quiz>(url, quiz, options).subscribe(res => {
                 var v = res;
                 console.log("Quiz " + v.Id + " has been created.");
                 this.router.navigate(["home"]);

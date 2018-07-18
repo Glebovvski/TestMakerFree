@@ -89,7 +89,7 @@ namespace TestMakerFree.Controllers
         /// Edit the quiz with the given {id}
         /// </summary>
         /// <param name="vm">The quiz viewmodel containing the data to edit</param>
-        [HttpPost]
+        [HttpPut]
         public IActionResult Put([FromBody]QuizViewModel vm)
         {
             if (vm == null)
