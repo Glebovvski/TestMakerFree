@@ -13,18 +13,11 @@ using TestMakerFree.ViewModels;
 
 namespace TestMakerFree.Controllers
 {
-    [Route("api/[controller]")]
-    public class QuizController : Controller
+    public class QuizController : BaseApiController
     {
-        #region Private Fields
-        private ApplicationDbContext context;
-        #endregion
-
         #region Constructor
-        public QuizController(ApplicationDbContext context)
-        {
-            this.context = context;
-        }
+        public QuizController(ApplicationDbContext context) : base(context)
+        { }
         #endregion
 
         #region RESTful conventions method
@@ -37,7 +30,7 @@ namespace TestMakerFree.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var quiz = context.Quizzes.Where(x => x.Id == id).FirstOrDefault();
+            var quiz = _context.Quizzes.Where(x => x.Id == id).FirstOrDefault();
 
             if (quiz == null)
             {
@@ -47,10 +40,7 @@ namespace TestMakerFree.Controllers
                 });
             }
 
-            return new JsonResult(quiz.Adapt<QuizViewModel>(), new JsonSerializerSettings()
-            {
-                Formatting = Formatting.Indented
-            });
+            return new JsonResult(quiz.Adapt<QuizViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -73,16 +63,12 @@ namespace TestMakerFree.Controllers
             quiz.CreatedDate = DateTime.Now;
             quiz.LastModified = quiz.CreatedDate;
 
-            quiz.UserId = context.Users.Where(x => x.UserName == "Admin").FirstOrDefault().Id;
+            quiz.UserId = _context.Users.Where(x => x.UserName == "Admin").FirstOrDefault().Id;
 
-            context.Quizzes.Add(quiz);
-            context.SaveChanges();
+            _context.Quizzes.Add(quiz);
+            _context.SaveChanges();
 
-            return new JsonResult(quiz.Adapt<QuizViewModel>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+            return new JsonResult(quiz.Adapt<QuizViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -95,7 +81,7 @@ namespace TestMakerFree.Controllers
             if (vm == null)
                 return new StatusCodeResult(500);
 
-            var quiz = context.Quizzes.Where(x => x.Id == vm.Id).FirstOrDefault();
+            var quiz = _context.Quizzes.Where(x => x.Id == vm.Id).FirstOrDefault();
 
             if (quiz == null)
                 return NotFound(new
@@ -110,13 +96,9 @@ namespace TestMakerFree.Controllers
 
             quiz.LastModified = quiz.CreatedDate;
 
-            context.SaveChanges();
+            _context.SaveChanges();
 
-            return new JsonResult(quiz.Adapt<QuizViewModel>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+            return new JsonResult(quiz.Adapt<QuizViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -126,7 +108,7 @@ namespace TestMakerFree.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var quiz = context.Quizzes.Where(x => x.Id == id).FirstOrDefault();
+            var quiz = _context.Quizzes.Where(x => x.Id == id).FirstOrDefault();
 
             if (quiz == null)
             {
@@ -136,8 +118,8 @@ namespace TestMakerFree.Controllers
                 });
             }
 
-            context.Quizzes.Remove(quiz);
-            context.SaveChanges();
+            _context.Quizzes.Remove(quiz);
+            _context.SaveChanges();
 
             return new OkResult();
         }
@@ -154,13 +136,10 @@ namespace TestMakerFree.Controllers
         [HttpGet("Latest/{num:int?}")]
         public IActionResult Latest(int num = 10)
         {
-            var latest = context.Quizzes.OrderByDescending(x => x.CreatedDate).Take(num).ToArray();
+            var latest = _context.Quizzes.OrderByDescending(x => x.CreatedDate).Take(num).ToArray();
 
             return new JsonResult(
-                latest.Adapt<List<QuizViewModel>>(), new Newtonsoft.Json.JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+                latest.Adapt<List<QuizViewModel>>(), JsonSettings);
         }
         #endregion
 
@@ -168,27 +147,19 @@ namespace TestMakerFree.Controllers
         [HttpGet("ByTitle/{num:int?}")]
         public IActionResult ByTitle(int num=10)
         {
-            var byTitle = context.Quizzes.OrderBy(x => x.Title).Take(num).ToArray();
+            var byTitle = _context.Quizzes.OrderBy(x => x.Title).Take(num).ToArray();
 
             return new JsonResult(
-                byTitle.Adapt<List<QuizViewModel>>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+                byTitle.Adapt<List<QuizViewModel>>(), JsonSettings);
         }
 
         [HttpGet("Random/{num:int?}")]
         public IActionResult Random(int num = 10)
         {
-            var random = context.Quizzes.OrderBy(x => Guid.NewGuid()).Take(num).ToArray();
+            var random = _context.Quizzes.OrderBy(x => Guid.NewGuid()).Take(num).ToArray();
 
             return new JsonResult(
-                random.Adapt<List<QuizViewModel>>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+                random.Adapt<List<QuizViewModel>>(), JsonSettings);
         }
     }
 }

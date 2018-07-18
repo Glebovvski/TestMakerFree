@@ -10,18 +10,11 @@ using TestMakerFree.ViewModels;
 
 namespace TestMakerFree.Controllers
 {
-    [Route("api/[controller]")]
-    public class QuestionController : Controller
+    public class QuestionController : BaseApiController
     {
-        #region Private Fields
-        private ApplicationDbContext _context;
-        #endregion
-
         #region Constructor
-        public QuestionController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public QuestionController(ApplicationDbContext context) : base(context)
+        { }
         #endregion
 
         #region RESTful conventions method
@@ -43,9 +36,7 @@ namespace TestMakerFree.Controllers
                 });
             }
 
-            return new JsonResult(question.Adapt<QuestionViewModel>(), new Newtonsoft.Json.JsonSerializerSettings(){
-                Formatting = Newtonsoft.Json.Formatting.Indented
-            });
+            return new JsonResult(question.Adapt<QuestionViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -68,9 +59,7 @@ namespace TestMakerFree.Controllers
             _context.Questions.Add(question);
             _context.SaveChanges();
 
-            return new JsonResult(question.Adapt<QuestionViewModel>(), new Newtonsoft.Json.JsonSerializerSettings(){
-                Formatting = Newtonsoft.Json.Formatting.Indented
-            });
+            return new JsonResult(question.Adapt<QuestionViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -97,10 +86,7 @@ namespace TestMakerFree.Controllers
 
             _context.SaveChanges();
 
-            return new JsonResult(question.Adapt<QuestionViewModel>(), new Newtonsoft.Json.JsonSerializerSettings()
-            {
-                Formatting = Newtonsoft.Json.Formatting.Indented
-            });
+            return new JsonResult(question.Adapt<QuestionViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -126,11 +112,7 @@ namespace TestMakerFree.Controllers
         {
             var sampleQuestions = _context.Questions.Where(q => q.QuizId == quizId).ToArray();
 
-            return new JsonResult(sampleQuestions.Adapt<List<QuestionViewModel>>(),
-                new Newtonsoft.Json.JsonSerializerSettings()
-                {
-                    Formatting = Newtonsoft.Json.Formatting.Indented
-                });
+            return new JsonResult(sampleQuestions.Adapt<List<QuestionViewModel>>(), JsonSettings);
         }
     }
 }

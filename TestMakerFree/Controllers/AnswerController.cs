@@ -12,18 +12,11 @@ using TestMakerFree.ViewModels;
 
 namespace TestMakerFree.Controllers
 {
-    [Route("api/[controller]")]
-    public class AnswerController : Controller
+    public class AnswerController : BaseApiController
     {
-        #region Private Fields
-        private ApplicationDbContext _context;
-        #endregion
-
         #region Constructor
-        public AnswerController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public AnswerController(ApplicationDbContext context) : base(context)
+        { }
         #endregion
 
         #region RESTful conventions method
@@ -40,10 +33,7 @@ namespace TestMakerFree.Controllers
             if (answer == null)
                 return NotFound();
 
-            return new JsonResult(answer.Adapt<AnswerViewModel>(), new Newtonsoft.Json.JsonSerializerSettings()
-            {
-                Formatting = Newtonsoft.Json.Formatting.Indented
-            });
+            return new JsonResult(answer.Adapt<AnswerViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -67,10 +57,7 @@ namespace TestMakerFree.Controllers
             _context.Answers.Add(answer);
             _context.SaveChanges();
 
-            return new JsonResult(answer.Adapt<AnswerViewModel>(), new Newtonsoft.Json.JsonSerializerSettings()
-            {
-                Formatting = Newtonsoft.Json.Formatting.Indented
-            });
+            return new JsonResult(answer.Adapt<AnswerViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -96,10 +83,7 @@ namespace TestMakerFree.Controllers
             
             _context.SaveChanges();
 
-            return new JsonResult(answer.Adapt<AnswerViewModel>(), new Newtonsoft.Json.JsonSerializerSettings()
-            {
-                Formatting = Newtonsoft.Json.Formatting.Indented
-            });
+            return new JsonResult(answer.Adapt<AnswerViewModel>(), JsonSettings);
         }
 
         /// <summary>
@@ -126,11 +110,7 @@ namespace TestMakerFree.Controllers
         {
             var sampleAnswers = _context.Answers.Where(q => q.QuestionId == questionId).ToList();
 
-            return new JsonResult(sampleAnswers.Adapt<List<AnswerViewModel>>(),
-                new Newtonsoft.Json.JsonSerializerSettings()
-                {
-                    Formatting = Newtonsoft.Json.Formatting.Indented
-                });
+            return new JsonResult(sampleAnswers.Adapt<List<AnswerViewModel>>(), JsonSettings);
         }
     }
 }
