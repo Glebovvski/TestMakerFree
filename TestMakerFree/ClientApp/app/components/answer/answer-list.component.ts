@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: 'answer-list',
+    selector: "answer-list",
     templateUrl: './answer-list.component.html',
     styleUrls: ['./answer-list.component.css']
 })

@@ -61,7 +61,7 @@ namespace TestMakerFree.Controllers
         /// Edit the answer with the given {id}
         /// </summary>
         /// <param name="vm">The answer viewmodel containing the data to edit</param>
-        [HttpPost]
+        [HttpPut]
         public IActionResult Put([FromBody]ResultViewModel vm)
         {
             if (vm == null)

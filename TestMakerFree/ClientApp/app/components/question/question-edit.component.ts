@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
-    selector: 'question-edit',
+    selector: "question-edit",
     templateUrl: './question-edit.component.html',
-    styleUrls: ['./question-edit.component']
+    styleUrls: ['./question-edit.component.css']
 })
 
 export class QuestionEditComponent {

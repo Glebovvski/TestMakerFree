@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
-    selector: 'result-edit',
+    selector: "result-edit",
     templateUrl: './result-edit.component.html',
-    styleUrls: ['./result-edit.component']
+    styleUrls: ['./result-edit.component.css']
 })
 
 export class ResultEditComponent {

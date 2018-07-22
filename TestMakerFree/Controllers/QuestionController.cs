@@ -66,7 +66,7 @@ namespace TestMakerFree.Controllers
         /// Edit the question with the given {id}
         /// </summary>
         /// <param name="vm">The question viewmodel containing the data to edit</param>
-        [HttpPost]
+        [HttpPut]
         public IActionResult Put([FromBody]QuestionViewModel vm)
         {
             if (vm == null) return new StatusCodeResult(500);

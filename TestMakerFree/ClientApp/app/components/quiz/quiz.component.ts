@@ -4,8 +4,8 @@ import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: "quiz",
-    templateUrl: "./quiz.component.html",
-    styleUrls: ["./quiz.component.css"]
+    templateUrl: './quiz.component.html',
+    styleUrls: ['./quiz.component.css']
 })
 
 export class QuizComponent {

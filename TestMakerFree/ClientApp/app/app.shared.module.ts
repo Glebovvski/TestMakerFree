@@ -47,7 +47,7 @@ import { ResultEditComponent } from './components/result/result-edit.component';
             { path: 'quiz/create', component: QuizEditComponent },
             { path: 'quiz/edit/:id', component: QuizEditComponent },
             { path: 'quiz/:id', component: QuizComponent },
-            { path: 'question/create/id', component: QuestionEditComponent },
+            { path: 'question/create/:id', component: QuestionEditComponent },
             { path: 'question/edit/:id', component: QuestionEditComponent },
             { path: 'about', component: AboutComponent },
             { path: 'login', component: LoginComponent },
