@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { QuestionListComponent } from './components/question/question-list.component';
 import { QuestionEditComponent } from './components/question/question-edit.component';
+import { AnswerListComponent } from './components/answer/answer-list.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { QuestionEditComponent } from './components/question/question-edit.compo
         QuizComponent,
         QuizEditComponent,
         QuestionListComponent,
+        AnswerListComponent,
         AboutComponent,
         LoginComponent,
         QuestionEditComponent,
