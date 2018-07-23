@@ -30,7 +30,7 @@ export class ResultListComponent implements OnChanges {
     }
 
     loadData() {
-        var url = this.baseUrl + "api/result/All" + this.quiz.Id;
+        var url = this.baseUrl + "api/result/All/" + this.quiz.Id;
 
         this.http.get<Result[]>(url).subscribe(res => {
             this.results = res;

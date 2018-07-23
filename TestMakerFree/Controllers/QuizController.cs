@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TestMakerFree.Data;
 using TestMakerFree.Data.Models;
@@ -30,7 +31,7 @@ namespace TestMakerFree.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var quiz = _context.Quizzes.Where(x => x.Id == id).FirstOrDefault();
+            var quiz = _context.Quizzes.Include(x=>x.Questions).Where(x => x.Id == id).FirstOrDefault();
 
             if (quiz == null)
             {

@@ -30,7 +30,7 @@ export class AnswerListComponent implements OnChanges {
     }
 
     loadData() {
-        var url = this.baseUrl + "api/answer/All" + this.question.Id;
+        var url = this.baseUrl + "api/answer/All/" + this.question.Id;
 
         this.http.get<Answer[]>(url).subscribe(res => {
             this.answers = res;

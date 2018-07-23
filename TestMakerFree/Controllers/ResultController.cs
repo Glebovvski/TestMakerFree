@@ -104,7 +104,7 @@ namespace TestMakerFree.Controllers
         }
         #endregion
 
-        [HttpGet("All/{questionId}")]
+        [HttpGet("All/{quizId}")]
         public IActionResult All(int quizId)
         {
             var results = _context.Results.Where(q => q.QuizId == quizId).ToList();

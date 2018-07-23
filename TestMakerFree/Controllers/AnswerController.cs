@@ -80,7 +80,8 @@ namespace TestMakerFree.Controllers
             answer.Notes = vm.Notes;
             answer.CreatedDate = DateTime.Now;
             answer.LastModified = answer.CreatedDate;
-            
+            answer.Value = vm.Value;
+
             _context.SaveChanges();
 
             return new JsonResult(answer.Adapt<AnswerViewModel>(), JsonSettings);
@@ -101,7 +102,7 @@ namespace TestMakerFree.Controllers
             _context.Answers.Remove(answer);
             _context.SaveChanges();
 
-            return Ok();
+            return new OkResult();
         }
         #endregion
 

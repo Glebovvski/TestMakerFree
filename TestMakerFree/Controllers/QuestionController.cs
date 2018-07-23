@@ -44,7 +44,7 @@ namespace TestMakerFree.Controllers
         /// </summary>
         /// <param name="vm">The question viewmodel containing the data to insert</param>
         [HttpPost]
-        public IActionResult Post(QuestionViewModel vm)
+        public IActionResult Post([FromBody]QuestionViewModel vm)
         {
             if (vm == null) return new StatusCodeResult(500);
 
@@ -103,7 +103,7 @@ namespace TestMakerFree.Controllers
             _context.Questions.Remove(question);
             _context.SaveChanges();
 
-            return Ok();
+            return new OkResult();
         }
         #endregion
 

@@ -30,7 +30,7 @@ export class QuestionListComponent implements OnChanges {
     }
 
     loadData() {
-        var url = this.baseUrl + "api/question/All" + this.quiz.Id;
+        var url = this.baseUrl + "api/question/All/" + this.quiz.Id;
 
         this.http.get<Question[]>(url).subscribe(res => {
             this.questions = res;
